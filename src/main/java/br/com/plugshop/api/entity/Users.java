@@ -3,20 +3,23 @@ package br.com.plugshop.api.entity;
 import javax.persistence.*;
 
 @Entity
-public class User {
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Column(nullable = false, length = 36)
-    private String user;
+    private String username;
 
     @Column(nullable = false, length = 255)
     private String name;
 
     @Column(nullable = false, length = 255)
     private String lastName;
+
+    @Column(nullable = false, length = 150)
+    private String email;
 
     @Column(nullable = false, length = 36)
     private String password;
@@ -39,16 +42,25 @@ public class User {
 
     // Get and Set
 
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public long getId() {
         return id;
     }
 
-    public String getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsername(String user) {
+        this.username = user;
     }
 
     public String getName() {

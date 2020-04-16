@@ -6,10 +6,10 @@ import com.sun.corba.se.impl.protocol.RequestCanceledException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -37,6 +37,12 @@ public class ProductController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public List<Product> GetProductList(){
+        return _ProductRepository.findAll();
+        }
+
 
     @RequestMapping(value = "/usuario/meus-produtos/remover/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> Delete(@PathVariable(value = "id")long id){

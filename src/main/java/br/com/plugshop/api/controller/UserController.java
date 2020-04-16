@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import br.com.plugshop.api.entity.User;
+import br.com.plugshop.api.entity.Users;
 
 import javax.validation.Valid;
 
@@ -19,9 +19,9 @@ public class UserController {
 
     //Cadastra User
     @RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
-    public Object Post(@Valid @RequestBody User user) {
+    public Object Post(@Valid @RequestBody Users users) {
         try{
-            return _UserRepository.save(user);
+            return _UserRepository.save(users);
 
         }catch (RequestCanceledException e){
             return  e.getCause();
