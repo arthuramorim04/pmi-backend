@@ -8,6 +8,7 @@ import java.time.Instant;
 
 
 @Entity
+@Table(name = "tb_order")
 public class Orders implements Serializable {
 
     private static final long serialVersionUID = 1L;
