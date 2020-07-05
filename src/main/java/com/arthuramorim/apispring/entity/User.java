@@ -2,6 +2,8 @@ package com.arthuramorim.apispring.entity;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,9 +24,8 @@ public class User implements Serializable {
     private String mail;
     private String phone;
     private String password;
-
     @OneToMany(mappedBy = "client")
-    private List<Orders> ordersList = new ArrayList<>();
+    private List<Order> orderList = new ArrayList<>();
 
     public User() {
     }
@@ -38,6 +39,9 @@ public class User implements Serializable {
     }
 
 
+    public List<Order> getOrderList() {
+        return orderList;
+    }
 
     public Long getId() {
         return id;
