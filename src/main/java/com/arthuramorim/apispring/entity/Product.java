@@ -43,6 +43,7 @@ public class Product implements Serializable {
         this.imgUrl = imgUrl;
     }
 
+    @JsonIgnore
     public Set<Order> getOrders(){
         Set<Order> aux = new HashSet<>();
 
