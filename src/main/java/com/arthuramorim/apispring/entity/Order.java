@@ -94,6 +94,14 @@ public class Order implements Serializable {
         return OrderStatus.valueOf(orderStatus);
     }
 
+    public Double getTotal(){
+        double total = 0;
+        for(OrderItem value : items){
+            total += value.getSubTotal();
+        }
+        return total;
+    }
+
     public void setOrderStatus(OrderStatus orderStatus) {
         if (orderStatus != null) {
             this.orderStatus = orderStatus.getCode();
