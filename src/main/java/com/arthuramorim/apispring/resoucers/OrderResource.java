@@ -1,9 +1,7 @@
 package com.arthuramorim.apispring.resoucers;
 
 import com.arthuramorim.apispring.entity.Order;
-import com.arthuramorim.apispring.entity.User;
 import com.arthuramorim.apispring.services.OrdersService;
-import com.arthuramorim.apispring.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

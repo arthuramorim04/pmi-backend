@@ -7,12 +7,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
 @Table(name = "tb_order")
 public class Order implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -24,10 +25,14 @@ public class Order implements Serializable {
 
     private Integer orderStatus;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;
+
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> items = new HashSet<>();
+
+
 
     public Order(){
 
@@ -43,8 +48,13 @@ public class Order implements Serializable {
     }
 
 
+
     public Long getId() {
         return id;
+    }
+
+    public Set<OrderItem> getItems() {
+        return items;
     }
 
     public void setId(Long id) {
