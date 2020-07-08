@@ -24,13 +24,13 @@ public class UserResource {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<User> findById(@PathVariable Long id){
+    public ResponseEntity<User> findById(@PathVariable Long id) {
         User obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 
     @PostMapping
-    public ResponseEntity<User> insert(@RequestBody User user){
+    public ResponseEntity<User> insert(@RequestBody User user) {
         user = service.insert(user);
 
         URI uri = ServletUriComponentsBuilder
@@ -42,14 +42,14 @@ public class UserResource {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user){
-        user = service.update(id,user);
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
+        user = service.update(id, user);
         return ResponseEntity.ok().body(user);
     }
 
