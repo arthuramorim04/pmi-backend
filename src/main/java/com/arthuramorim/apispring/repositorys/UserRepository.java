@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
 // ja esta registrada como repositorio por extender a JpaRepository
 public interface UserRepository extends JpaRepository<User,Long> {
 
+    User findByEmail(String email);
+    User findByName(String name);
+
 }

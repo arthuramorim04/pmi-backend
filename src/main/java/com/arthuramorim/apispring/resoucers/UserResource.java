@@ -17,6 +17,8 @@ public class UserResource {
     @Autowired
     private UserService service;
 
+
+
     @GetMapping
     public ResponseEntity<List<User>> findAll() {
         List<User> list = service.findAll();
@@ -52,5 +54,6 @@ public class UserResource {
         user = service.update(id, user);
         return ResponseEntity.ok().body(user);
     }
+
 
 }

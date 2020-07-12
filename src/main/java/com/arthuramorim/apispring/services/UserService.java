@@ -2,6 +2,7 @@ package com.arthuramorim.apispring.services;
 
 import com.arthuramorim.apispring.entity.User;
 import com.arthuramorim.apispring.repositorys.UserRepository;
+import com.arthuramorim.apispring.security.PasswordUtils;
 import com.arthuramorim.apispring.services.exceptions.DatabaseException;
 import com.arthuramorim.apispring.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,42 +14,44 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service(value = "userService")
 public class UserService {
 // todos as chamadas utilizando o UserRepository devem ser feitas a partir dessa classe
 
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> findAll(){
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 
-    public User findById(Long id){
+    public User findById(Long id) {
         Optional<User> obj = userRepository.findById(id);
-        return obj.orElseThrow(()->new ResourceNotFoundException(id));
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
-    public User insert(User user){
+    public User insert(User user) {
+        String s = PasswordUtils.generateBCrypt(user.getPassword());
+        user.setPassword(s);
         return userRepository.save(user);
     }
 
-    public void delete(Long id){
-        try{
+    public void delete(Long id) {
+        try {
             userRepository.deleteById(id);
-        }catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException(id);
-        }catch (DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             throw new DatabaseException(e.getMessage());
         }
     }
 
-    public User update(Long id, User user){
-        try{
+    public User update(Long id, User user) {
+        try {
             User entity = userRepository.getOne(id);
-            updateData(entity,user);
+            updateData(entity, user);
             return userRepository.save(entity);
-        }catch (EntityNotFoundException e){
+        } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
         }
     }
@@ -57,6 +60,22 @@ public class UserService {
         entity.setName(user.getName());
         entity.setEmail(user.getEmail());
         entity.setPhone(user.getPhone());
+    }
+
+    public Boolean checkLogin(String name, String password) {
+
+        if (name != null) {
+            User user = userRepository.findByName(name);
+            if (PasswordUtils.passValid(password, user.getPassword())) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } else {
+            return false;
+        }
+
     }
 
 }
