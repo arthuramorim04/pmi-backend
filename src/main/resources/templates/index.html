@@ -4,20 +4,95 @@
 <head>
     <title>Spring API</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../static/style/index.css">
-    <script src="../static/materialize/script.js"></script>
+    <meta name="viewport" content="widht=device-width, initial-scale=1.0" />
 </head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    html,
+    body {
+        height: 100%;
+    }
+
+    .spring-logo {
+        width: 50px;
+        border-radius: 50%;
+    }
+
+    .geral {
+        background: cornflowerblue;
+        min-height: 100%;
+        position: relative;
+
+    }
+
+    div.title {
+        gap: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    div.project-description {
+        text-justify: auto;
+    }
+
+    div.contact {
+        margin-top: 50px;
+        display: flex;
+        gap: 15px;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    img.icon {
+        border-radius: 50%;
+        width: 70px;
+    }
+
+    div.name-project {
+        margin-top: 10px;
+        position: relative;
+        text-align: center;
+    }
+
+    div.project-description {
+        position: relative;
+        text-align: center;
+        margin-top: 60px;
+        font-size: 20px;
+    }
+
+
+    .footer {
+        background: black;
+        color: gray;
+        position: absolute;
+        bottom: 0;
+        height: 30px;
+        width: 100%;
+        text-align: center;
+
+    }
+</style>
 
 <body>
 
 
     <div class="geral">
         <div class="title">
-            <img src="https://img1.gratispng.com/20180715/ohc/kisspng-java-development-kit-software-development-kit-comp-programming-language-icon-5b4b9cb1bbcd03.5052416115316819697692.jpg" class="spring-logo">
+            <img src="https://img1.gratispng.com/20180715/ohc/kisspng-java-development-kit-software-development-kit-comp-programming-language-icon-5b4b9cb1bbcd03.5052416115316819697692.jpg"
+                class="spring-logo">
             <a>+</a>
             <img src="https://miro.medium.com/max/300/1*DeBhsZUhS7RPLwyd1-Ul8A.png" class="spring-logo">
-            
-            
+
+
         </div>
         <div class="name-project">
             <h1>API SpringBoot</h1>
@@ -30,16 +105,18 @@
             <br><a>Qualquer semelhança com algum sistema é mera conhecidencia. Este projéto
                 é para fins academicos.</a>
         </div>
-        
+
         <div class="contact">
             <div class="linkedin">
-                <img src="https://images.vexels.com/media/users/3/137382/isolated/preview/c59b2807ea44f0d70f41ca73c61d281d-linkedin-icon-logo-by-vexels.png" onclick="openLinkedin()" class="icon">
+                <img src="https://images.vexels.com/media/users/3/137382/isolated/preview/c59b2807ea44f0d70f41ca73c61d281d-linkedin-icon-logo-by-vexels.png"
+                    onclick="openLinkedin()" class="icon">
             </div>
             <div class="github">
                 <img src="https://image.flaticon.com/icons/png/512/25/25231.png" onclick="openGithub()" class="icon">
             </div>
             <div class="discord">
-                <img src="https://toppng.com/uploads/preview/discord-icon-by-rengatv-discord-icon-11553508252vxmpxthspi.png" onclick="openDiscord()" class="icon">
+                <img src="https://toppng.com/uploads/preview/discord-icon-by-rengatv-discord-icon-11553508252vxmpxthspi.png"
+                    onclick="openDiscord()" class="icon">
             </div>
         </div>
         <div class="footer">
@@ -49,5 +126,18 @@
 
 </body>
 
+<script>
+    function openGithub() {
+        window.open("https://github.com/arthuramorim04")
+    }
+
+    function openLinkedin() {
+        window.open("https://www.linkedin.com/in/arthur-amorim-95b0a7160/")
+    }
+
+    function openDiscord() {
+        window.open("https://discord.gg/XR85abY")
+    }
+</script>
 
 </html>
