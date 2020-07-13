@@ -25,6 +25,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/products","/")
                 //permite que esses endpoints possam ser acessados por qualquer usuario
                 .permitAll()
+                .antMatchers(HttpMethod.POST,"/users")
+                .permitAll()
                 //define que todas as outras requisições precisam ser autenticadas
                 .anyRequest().authenticated()
                 //libera a pagina de login para todos os usuarios

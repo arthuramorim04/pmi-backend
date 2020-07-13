@@ -1,0 +1,69 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+html,body{
+    height: 100%;
+}
+
+.spring-logo{
+    width: 50px;
+    border-radius: 50%;
+}
+
+.geral {
+    background: cornflowerblue;
+    min-height:100%;
+    position:relative;
+
+}
+div.title{
+    gap: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+div.project-description{
+    text-justify: auto;
+}
+
+div.contact{
+    margin-top: 50px;
+    display: flex;
+    gap: 15px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+img.icon{
+    border-radius: 50%;
+    width: 70px;
+}
+
+div.name-project{
+    margin-top: 10px;
+    position: relative;
+    text-align: center;
+}
+div.project-description{
+    position: relative;
+    text-align: center;
+    margin-top: 60px;
+    font-size: 20px;
+}
+
+
+.footer {
+    background: black;
+    color: gray;
+    position:absolute;
+    bottom:0;
+    height: 30px;
+    width:100%;
+    text-align: center;
+    
+}
