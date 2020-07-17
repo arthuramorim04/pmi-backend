@@ -29,6 +29,7 @@ public class User implements Serializable, UserDetails {
     private String phone;
     private UserRole role;
     private String password;
+    private String tokenJWT;
 
     @JsonIgnore
     @OneToMany(mappedBy = "client")
@@ -45,6 +46,13 @@ public class User implements Serializable, UserDetails {
         this.password = password;
     }
 
+    public String getTokenJWT() {
+        return tokenJWT;
+    }
+
+    public void setTokenJWT(String tokenJWT) {
+        this.tokenJWT = tokenJWT;
+    }
 
     public UserRole getRole() {
         return role;

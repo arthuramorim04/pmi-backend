@@ -30,6 +30,11 @@ public class UserService {
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
+    public User findByMail(String email) {
+        Optional<User> obj = Optional.ofNullable(userRepository.findByEmail(email));
+        return obj.orElseThrow(() -> new ResourceNotFoundException(email));
+    }
+
     public User insert(User user) {
         String s = PasswordUtils.generateBCrypt(user.getPassword());
         user.setPassword(s);
@@ -62,10 +67,10 @@ public class UserService {
         entity.setPhone(user.getPhone());
     }
 
-    public Boolean checkLogin(String name, String password) {
+    public Boolean checkLogin(String email, String password) {
 
-        if (name != null) {
-            User user = userRepository.findByName(name);
+        if (email != null) {
+            User user = userRepository.findByEmail(email);
             if (PasswordUtils.passValid(password, user.getPassword())) {
                 return true;
             } else {

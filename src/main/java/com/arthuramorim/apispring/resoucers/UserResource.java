@@ -1,6 +1,7 @@
 package com.arthuramorim.apispring.resoucers;
 
 import com.arthuramorim.apispring.entity.User;
+import com.arthuramorim.apispring.entity.enums.UserRole;
 import com.arthuramorim.apispring.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,21 +20,10 @@ public class UserResource {
 
 
 
-    @GetMapping
-    public ResponseEntity<List<User>> findAll() {
-        List<User> list = service.findAll();
-        return ResponseEntity.ok().body(list);
-    }
-
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<User> findById(@PathVariable Long id) {
-        User obj = service.findById(id);
-        return ResponseEntity.ok().body(obj);
-    }
-
     @PostMapping
     public ResponseEntity<User> insert(@RequestBody User user) {
         user = service.insert(user);
+        user.setRole(UserRole.MEMBER);
 
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
@@ -54,6 +44,5 @@ public class UserResource {
         user = service.update(id, user);
         return ResponseEntity.ok().body(user);
     }
-
 
 }

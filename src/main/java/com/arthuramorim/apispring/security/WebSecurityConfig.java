@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -19,36 +19,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private AutenticationUser implementsUserDetailsService;
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
-                //lista os endpoints e o metodo para eles
-                .antMatchers(HttpMethod.GET,"/products","/")
-                //permite que esses endpoints possam ser acessados por qualquer usuario
-                .permitAll()
-                .antMatchers(HttpMethod.POST,"/users")
-                .permitAll()
-                //define que todas as outras requisições precisam ser autenticadas
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.csrf().disable().authorizeRequests()
+                .antMatchers(HttpMethod.GET,"/").permitAll()
+                .antMatchers(HttpMethod.POST, "/login","/users").permitAll()
                 .anyRequest().authenticated()
-                //libera a pagina de login para todos os usuarios
-                .and().formLogin().permitAll()
-                //acessa a pagina /logout que a sessao sai
-                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+                .and()
+
+                // filtra requisições de login
+                .addFilterBefore(new JWTLoginFilter("/login", authenticationManager()),
+                        UsernamePasswordAuthenticationFilter.class)
+
+                // filtra outras requisições para verificar a presença do JWT no header
+                .addFilterBefore(new JWTAuthenticationFilter(),
+                        UsernamePasswordAuthenticationFilter.class);
     }
-
-
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
 
         auth.userDetailsService(implementsUserDetailsService)
-        .passwordEncoder(new BCryptPasswordEncoder());
+                .passwordEncoder(new BCryptPasswordEncoder());
     }
 
 
     @Override
-    public void configure(WebSecurity web){
+    public void configure(WebSecurity web) {
         //remove a necessidade de autenticar quando uma pagina estatica é chamada
-        web.ignoring().antMatchers("/materialize/**","/style/**");
+        web.ignoring().antMatchers("/materialize/**", "/style/**");
     }
 
 
