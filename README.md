@@ -12,7 +12,7 @@ http://localhost:8080/login
 #### Json modelo
 ```
 {
-    "email":"arthur@gmail.com",
+    "email":"teste@gmail.com",
     "password":"1234"
 }
 ```
