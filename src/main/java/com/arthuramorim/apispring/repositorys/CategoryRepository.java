@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 // ja esta registrada como repositorio por extender a JpaRepository
 public interface CategoryRepository extends JpaRepository<Category,Long> {
 
+    Category findByName(String name);
+
 }

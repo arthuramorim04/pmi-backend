@@ -67,20 +67,4 @@ public class UserService {
         entity.setPhone(user.getPhone());
     }
 
-    public Boolean checkLogin(String email, String password) {
-
-        if (email != null) {
-            User user = userRepository.findByEmail(email);
-            if (PasswordUtils.passValid(password, user.getPassword())) {
-                return true;
-            } else {
-                return false;
-            }
-
-        } else {
-            return false;
-        }
-
-    }
-
 }
