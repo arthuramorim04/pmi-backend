@@ -20,8 +20,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/").permitAll()
+
+        httpSecurity.cors().and()
+                .csrf().disable().authorizeRequests()
+                .antMatchers(HttpMethod.GET,"/", "/products").permitAll()
                 .antMatchers(HttpMethod.POST, "/login","/users").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -33,7 +35,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // filtra outras requisições para verificar a presença do JWT no header
                 .addFilterBefore(new JWTAuthenticationFilter(),
                         UsernamePasswordAuthenticationFilter.class);
+
     }
+
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
