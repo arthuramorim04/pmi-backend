@@ -1,4 +1,4 @@
-package com.arthuramorim.apispring.resoucers;
+package com.arthuramorim.apispring.resoucers.admin;
 
 import com.arthuramorim.apispring.entity.User;
 import com.arthuramorim.apispring.entity.enums.UserRole;

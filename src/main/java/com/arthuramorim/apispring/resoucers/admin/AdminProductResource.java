@@ -1,4 +1,4 @@
-package com.arthuramorim.apispring.resoucers;
+package com.arthuramorim.apispring.resoucers.admin;
 
 import com.arthuramorim.apispring.entity.Category;
 import com.arthuramorim.apispring.entity.Product;
