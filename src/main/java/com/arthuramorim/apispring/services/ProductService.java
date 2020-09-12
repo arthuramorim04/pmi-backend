@@ -1,6 +1,7 @@
 package com.arthuramorim.apispring.services;
 
 import com.arthuramorim.apispring.entity.Product;
+import com.arthuramorim.apispring.repositorys.CategoryRepository;
 import com.arthuramorim.apispring.repositorys.ProductRepository;
 import com.arthuramorim.apispring.services.exceptions.DatabaseException;
 import com.arthuramorim.apispring.services.exceptions.ResourceNotFoundException;
@@ -17,25 +18,28 @@ public class ProductService {
 // todos as chamadas utilizando o UserRepository devem ser feitas a partir dessa classe
 
     @Autowired
-    private ProductRepository categoryRepository;
+    private ProductRepository productRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     public List<Product> findAll() {
-        return categoryRepository.findAll();
+        return productRepository.findAll();
     }
 
     //busca por categoria
     public Product findById(Long id) {
-        Optional<Product> obj = categoryRepository.findById(id);
+        Optional<Product> obj = productRepository.findById(id);
         return obj.get();
     }
 
     public Product insert(Product product) {
-        return categoryRepository.save(product);
+        return productRepository.save(product);
     }
 
     public void delete(Long id){
         try{
-            categoryRepository.deleteById(id);
+            productRepository.deleteById(id);
         }catch (EmptyResultDataAccessException e){
             throw new ResourceNotFoundException(id);
         }catch (DataIntegrityViolationException e){
