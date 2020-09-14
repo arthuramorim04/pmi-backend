@@ -23,7 +23,6 @@ public class Product implements Serializable {
     private String imgUrl;
 
     @ManyToMany
-    @JsonIgnore
     @JoinTable(name = "tb_product_category",
             joinColumns = @JoinColumn(name = "prooduct_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
