@@ -1,4 +1,9 @@
+# Backend Plug E-commercee
 
+#### Iniciar backend:
+```
+    /mvnw spring-boot:run
+```
 
 ## Endpoints da API
 
